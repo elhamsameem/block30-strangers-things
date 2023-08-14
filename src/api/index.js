@@ -12,3 +12,30 @@ export async function getAllPosts() {
     console.error(`Unable to retrieve posts!`, error);
   }
 }
+export async function loginUser(username, password) {
+  try {
+    const response = await fetch(`${API_URL}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+        },
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result && result.data && result.data.token) {
+      return result.data.token;
+    } else {
+      throw new Error(result.error.message || "Unable to login.");
+    }
+  } catch (error) {
+    console.error(`Login failed!`, error);
+    throw error;
+  }
+}
