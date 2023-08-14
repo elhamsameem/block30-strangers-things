@@ -1,6 +1,6 @@
 import React from "react";
 
-function Register() {
+function Register({ isLoggedIn }) {
   return (
     <div className="register">
       <h1>Register</h1>

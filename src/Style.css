@@ -5,22 +5,40 @@
   font-family: arial, sans-serif;
 }
 
-.navbar {
-  padding: 2.5em;
-  justify-content: space-evenly;
-  background-color: brown;
+.canvas {
+  /* margin: 1rem; */
 }
 
-.navbar a {
-  float: right;
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: brown;
+  padding: 0.3rem;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: space-evenly;
+  margin-right: 4rem;
+}
+
+.navLinks a {
   font-size: 1.5rem;
   font-weight: 600;
   padding: 25px 25px;
-  margin-top: -40px;
   text-decoration: none;
   color: black;
 }
 
-.navbar a:hover {
+.navLinks a:hover,
+.active {
   box-shadow: 0 0 10px black;
+}
+
+.navTitle,
+.navTitle h1 {
+  display: flex;
+  margin: auto;
+  margin-left: 4rem;
+  background-color: brown;
 }

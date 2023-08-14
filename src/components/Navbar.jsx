@@ -1,12 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import React from "react";
 
-function Navbar() {
+function Navbar({ isLoggedIn }) {
   return (
     <div className="navbar">
-      <Link to={"/register"}>Register</Link>
-      <Link to={"/login"}>Login</Link>
-      <Link to={"/"}>Home</Link>
+      <h1 className="navTitle">Stranger's Things</h1>
+      <div className="navLinks">
+        <NavLink to={"/"}>Home</NavLink>
+        <NavLink to={"/posts"}>Posts</NavLink>
+        {isLoggedIn ? (
+          <>
+            <NavLink to={"/createpost"}>New Post</NavLink>
+            <NavLink to={"/logout"}>Log Out</NavLink>
+          </>
+        ) : (
+          <>
+            <NavLink to={"/login"}>Login</NavLink>
+            <NavLink to={"/register"}>Register</NavLink>
+          </>
+        )}
+      </div>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Login() {
+function Login({ isLoggedIn }) {
   return (
     <div className="login">
       <h1>Login</h1>
