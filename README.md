@@ -69,7 +69,7 @@ Make sure you have met all of the following requirements:
 
 #### AJAX Basics
 
-- [ ] Usage of HTTP methods: GET, POST, PATCH, DELETE.
+- [x] Usage of HTTP methods: GET, POST, PATCH, DELETE.
 - [ ] Handling asynchronous coding for requests.
 - [ ] Usage of try/catch blocks within async functions.
 - [ ] Updating the DOM with results of data requests.
