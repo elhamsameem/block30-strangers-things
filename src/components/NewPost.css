@@ -1,0 +1,6 @@
+form {
+  border: 2pt solid black;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
