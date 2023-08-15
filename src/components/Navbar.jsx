@@ -10,7 +10,7 @@ function Navbar({ isLoggedIn }) {
         <NavLink to={"/posts"}>Posts</NavLink>
         {isLoggedIn ? (
           <>
-            <NavLink to={"/newpost"}>Add New Post</NavLink>
+            <NavLink to={"/newpost"}>New Post</NavLink>
             <NavLink to={"/logout"}>Log Out</NavLink>
           </>
         ) : (

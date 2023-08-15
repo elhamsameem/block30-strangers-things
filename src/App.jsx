@@ -9,8 +9,8 @@ import NewPost from "./components/NewPost";
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [token, setToken] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [token, setToken] = useState(sessionStorage.getItem("token") || null);
+  const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
 
   return (
     <div>
