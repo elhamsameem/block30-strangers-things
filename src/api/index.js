@@ -12,6 +12,8 @@ export async function getAllPosts() {
     console.error(`Unable to retrieve posts!`, error);
   }
 }
+
+// Log In function
 export async function loginUser(username, password) {
   try {
     const response = await fetch(`${API_URL}/users/login`, {
@@ -39,3 +41,21 @@ export async function loginUser(username, password) {
     throw error;
   }
 }
+
+// Create New Post using an object
+export const createPost = async (post) => {
+  try {
+    const response = await fetch(`${API_URL}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+      },
+      body: JSON.stringify({ post })
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error creating new post: ", error);
+  }
+};
