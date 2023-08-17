@@ -21,7 +21,7 @@ Make sure you have met all of the following requirements:
 
 - [ ] `/posts`
 - [ ] `/profile` (with messages)
-- [ ] `/login` and `/register` (alternatively displayed in the profile)
+- [x] `/login` and `/register` (alternatively displayed in the profile)
 
 #### Unauthenticated Users
 

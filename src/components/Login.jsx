@@ -26,8 +26,9 @@ function Login() {
     try {
       const token = await loginUser(credentials.username, credentials.password);
       if (token) {
-        localStorage.setItem("token", token);
-        navigate("/home");
+        sessionStorage.setItem("token", token);
+        navigate("/");
+        location.reload();
       } else {
         setError("Invalid Credentials, please try again");
       }
