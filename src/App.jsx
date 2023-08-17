@@ -7,8 +7,6 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import NewPost from "./components/NewPost";
 import React, { useState, useEffect } from "react";
-import { fetchPosts } from "./api";
-import { makePost } from "./api";
 import { updatePost } from "./api";
 import { deletPost } from "./api";
 
