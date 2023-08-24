@@ -42,43 +42,46 @@ export async function loginUser(username, password) {
   }
 }
 
-// Create New Post using an object
-export const createPost = async (post) => {
+export const updatePost = async (postId) => {
   try {
-    const response = await fetch(`${API_URL}/posts`, {
-      method: "POST",
+    const response = await fetch(`${API_URL}/posts/${postId}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({ post }),
-    });
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error("Error creating new post: ", error);
-  }
-};
-
-// Creating a user with this POST request
-export async function registerUser(username, password) {
-  try {
-    const res = await fetch(`${API_URL}/users/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN_STRING_HERE}`,
       },
       body: JSON.stringify({
-        user: {
-          username: username,
-          password: password,
+        post: {
+          title: "My favorite stuffed animal",
+          description:
+            "This is a pooh doll from 1973. It has been carefully taken care of since I first got it",
+          price: "$480.00",
+          location: "New York,NY",
+          willDeliver: true,
         },
       }),
     });
-    const result = await res.json();
-    alert(result.data.message);
+    const result = await response.json();
+    console.log(result.data.post);
+    return result.data.post;
+  } catch (error) {
+    console.error(err);
+  }
+};
+
+export const deletPost = async (postId) => {
+  try {
+    const response = await fetch(`${API_URL}/posts/${postId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${TOKEN_STRING_HERE}`,
+      },
+    });
+    const result = await response.json();
+    console.log();
     return result;
   } catch (error) {
-    console.error("Unable to create a player!", error);
+    console.error(err);
   }
-}
+};
