@@ -44,3 +44,8 @@
   color: rgba(0, 0, 0, 0.455)
 }
 
+.new-post-button-div {
+  display: flex;
+  justify-content: center;
+}
+
