@@ -12,7 +12,7 @@ const GetAllPosts = () => {
     fetchPosts();
   }, []);
   return (
-    <div className="container">
+    <div className="posts-container">
       <div className="post">
         {posts.map((post) => {
           return <PostItem key={post._id} post={post} />;

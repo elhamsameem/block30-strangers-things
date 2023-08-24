@@ -1,3 +1,46 @@
+.posts-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  /* border: 2pt black solid; */
+  margin-bottom: 2rem;
+}
+
+.post-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  /* width: 50rem; */
+
+  border-radius: 10px;
+  background-color: rgba(162, 135, 121, 0.499);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.758);
+
+  /* border: 2pt solid red; */
+}
+
+.post-title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .post-description {
   white-space: pre-line; /* Preserves line breaks and spaces */
 }
+
+.post-item p {
+  margin-top: 1rem;
+}
+
+.seller-username {
+  color: rgba(0, 0, 0, 0.455)
+}
+
