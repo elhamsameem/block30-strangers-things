@@ -7,8 +7,6 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import NewPost from "./components/NewPost";
 import React, { useState, useEffect } from "react";
-import { updatePost } from "./api";
-import { deletPost } from "./api";
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);

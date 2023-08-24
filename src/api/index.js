@@ -42,46 +42,43 @@ export async function loginUser(username, password) {
   }
 }
 
-export const updatePost = async (postId) => {
+// Create New Post using an object
+export const createPost = async (post) => {
   try {
-    const response = await fetch(`${API_URL}/posts/${postId}`, {
-      method: "PATCH",
+    const response = await fetch(`${API_URL}/posts`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${TOKEN_STRING_HERE}`,
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
       },
-      body: JSON.stringify({
-        post: {
-          title: "My favorite stuffed animal",
-          description:
-            "This is a pooh doll from 1973. It has been carefully taken care of since I first got it",
-          price: "$480.00",
-          location: "New York,NY",
-          willDeliver: true,
-        },
-      }),
+      body: JSON.stringify({ post }),
     });
     const result = await response.json();
-    console.log(result.data.post);
-    return result.data.post;
+    return result;
   } catch (error) {
-    console.error(err);
+    console.error("Error creating new post: ", error);
   }
 };
 
-export const deletPost = async (postId) => {
+// Creating a user with this POST request
+export async function registerUser(username, password) {
   try {
-    const response = await fetch(`${API_URL}/posts/${postId}`, {
-      method: "DELETE",
+    const res = await fetch(`${API_URL}/users/register`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${TOKEN_STRING_HERE}`,
       },
+      body: JSON.stringify({
+        user: {
+          username: username,
+          password: password,
+        },
+      }),
     });
-    const result = await response.json();
-    console.log();
+    const result = await res.json();
+    alert(result.data.message);
     return result;
   } catch (error) {
-    console.error(err);
+    console.error("Unable to create a player!", error);
   }
-};
+}
