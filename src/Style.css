@@ -15,7 +15,7 @@
 
 .navbar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   background-color: brown;
   padding: 0.3rem;
   /* padding-left: 30%; */
