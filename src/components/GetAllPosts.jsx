@@ -6,8 +6,6 @@ import NewPost from "./NewPost";
 const GetAllPosts = ({ isLoggedIn }) => {
   const [posts, setPosts] = useState([]);
   const [showNewPost, setShowNewPost] = useState(false); // State to control NewPost visibility
-  isLoggedIn = true;
-  console.log(`${isLoggedIn}`);
 
   const handleClick = () => {
     setShowNewPost(!showNewPost); // Toggle the showNewPost state
@@ -26,16 +24,19 @@ const GetAllPosts = ({ isLoggedIn }) => {
       <div className="post">
         {
           <div className="new-post-button-div">
-            {showNewPost ? (
-              <>
-                <NewPost isLoggedIn={isLoggedIn} />
-                <button onClick={handleClick}>Close Form</button>
-              </>
-            ) : (
-              <button className="new-post-button" onClick={handleClick}>
-                Add New Post
-              </button>
-            )}
+            {isLoggedIn &&
+              (showNewPost ? (
+                <>
+                  <button className="x-button" onClick={handleClick}>
+                    X
+                  </button>
+                  <NewPost isLoggedIn={isLoggedIn} />
+                </>
+              ) : (
+                <button className="new-post-button" onClick={handleClick}>
+                  Add New Post
+                </button>
+              ))}
           </div>
         }
         {posts.map((post) => {

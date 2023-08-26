@@ -7,13 +7,18 @@
 
 .canvas {
   margin: 1rem;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: brown;
   padding: 0.3rem;
+  /* padding-left: 30%; */
 }
 
 .navLinks {
@@ -38,7 +43,7 @@
 .navTitle,
 .navTitle h1 {
   display: flex;
-  margin: auto;
   margin-left: 4rem;
   background-color: brown;
+  width: fit-content;
 }

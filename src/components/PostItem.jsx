@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./PostItem.css";
 
 const PostItem = ({ post }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/posts/${post._id}`);
+  };
+
   return (
     <>
       <div className="post-item" key={post.id}>
@@ -25,11 +31,12 @@ const PostItem = ({ post }) => {
         <p>
           <b>Will Deliver: </b> {post.willDeliver ? "Yes" : "No"}
         </p>
-        <p>
-          <b>Messages: </b>
-          {post.messages}
-        </p>
-        <p>Is Author: {post.isAuthor.toString()}</p>
+        <br />
+        <div>
+          <button className="simple-buttons" onClick={handleClick}>
+            View
+          </button>
+        </div>
       </div>
     </>
   );

@@ -82,3 +82,15 @@ export async function registerUser(username, password) {
     console.error("Unable to create a player!", error);
   }
 }
+
+// Fetch single post using this function
+export async function fetchSinglePost(postId) {
+  try {
+    const response = await fetch(`${API_URL}/posts/${postId}`);
+    console.log(`${API_URL}/posts/${postId}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error Get SinglePost: ", error);
+  }
+}

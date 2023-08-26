@@ -29,6 +29,13 @@
 .post-title {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.x-button {
+  width: 3rem;
+  margin-bottom: 1rem;
+
 }
 
 .post-description {
@@ -50,7 +57,7 @@
   align-items: center;
 }
 
-.new-post-button-div button {
+.new-post-button-div button, button {
   margin-top: 20px;
   padding: 10px;
   background-color: #007bff;
@@ -60,8 +67,17 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-weight: bold;
+  padding: 1rem;
 }
 
-.new-post-button-div button:hover {
-  background-color: #0056b3;
+.new-post-button-div button:hover, button:hover {
+  background-color: #0056b3 !important;
+  color: white !important;
+}
+
+.simple-buttons {
+  background-color: white ;
+  color: #007bff;
+  border: solid 1pt #007bff;
+  width: 5rem;
 }

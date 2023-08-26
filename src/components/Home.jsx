@@ -1,12 +1,12 @@
 import React from "react";
 import GetAllPosts from "./GetAllPosts";
 
-function Home() {
+function Home( {isLoggedIn}) {
   return (
     <div>
       <h1>Home</h1>
       <br />
-      <GetAllPosts />
+      <GetAllPosts isLoggedIn={isLoggedIn} />
     </div>
   );
 }
