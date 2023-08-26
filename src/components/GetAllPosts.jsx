@@ -3,13 +3,14 @@ import { getAllPosts } from "../api";
 import PostItem from "./PostItem.jsx";
 import NewPost from "./NewPost";
 
-const GetAllPosts = () => {
+const GetAllPosts = ({ isLoggedIn }) => {
   const [posts, setPosts] = useState([]);
   const [showNewPost, setShowNewPost] = useState(false); // State to control NewPost visibility
+  isLoggedIn = true;
+  console.log(`${isLoggedIn}`);
 
   const handleClick = () => {
-    const newPostButtonDiv = document.querySelector(".new-post-button-div");
-    setShowNewPost(true);
+    setShowNewPost(!showNewPost); // Toggle the showNewPost state
   };
 
   useEffect(() => {
@@ -19,18 +20,24 @@ const GetAllPosts = () => {
     };
     fetchPosts();
   }, []);
+
   return (
     <div className="posts-container">
       <div className="post">
-        <div className="new-post-button-div">
-          {showNewPost ? (
-            <NewPost /> // Render NewPost component if showNewPost is true
-          ) : (
-            <button className="new-post-button" onClick={handleClick}>
-              Add New Post
-            </button>
-          )}{" "}
-        </div>
+        {
+          <div className="new-post-button-div">
+            {showNewPost ? (
+              <>
+                <NewPost isLoggedIn={isLoggedIn} />
+                <button onClick={handleClick}>Close Form</button>
+              </>
+            ) : (
+              <button className="new-post-button" onClick={handleClick}>
+                Add New Post
+              </button>
+            )}
+          </div>
+        }
         {posts.map((post) => {
           return <PostItem key={post._id} post={post} />;
         })}

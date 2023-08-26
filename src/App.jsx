@@ -11,6 +11,7 @@ import React, { useState, useEffect } from "react";
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
+  console.log(isLoggedIn);
 
   return (
     <div>
@@ -18,7 +19,10 @@ function App() {
       <div className="canvas">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/posts" element={<GetAllPosts />} />
+          <Route
+            path="/posts"
+            element={<GetAllPosts isLoggedIn={isLoggedIn} />}
+          />
           <Route
             path="/newpost"
             element={<NewPost isLoggedIn={isLoggedIn} />}
