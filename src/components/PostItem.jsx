@@ -11,7 +11,6 @@ const PostItem = ({ post }) => {
   return (
     <>
       <div className="post-item" key={post.id}>
-        <div className="actions">{post.isAuthor && "Delete"}</div>
         <div className="post-title">
           <h2>{post.title}</h2>
           <b className="seller-username">{post.author.username}</b>
@@ -22,7 +21,7 @@ const PostItem = ({ post }) => {
         </p>
         <p className="post-description">
           <b>Description: </b>
-          {post.description}
+          <div style={{ paddingLeft: "1rem" }}>{post.description}</div>
         </p>
         <p>
           <b>Location: </b>
