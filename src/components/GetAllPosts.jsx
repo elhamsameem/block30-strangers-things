@@ -40,7 +40,9 @@ const GetAllPosts = ({ isLoggedIn }) => {
           </div>
         }
         {posts.map((post) => {
-          return <PostItem key={post._id} post={post} />;
+          return (
+            <PostItem key={post._id} post={post} isLoggedIn={isLoggedIn} />
+          );
         })}
       </div>
     </div>

@@ -23,7 +23,10 @@ function App() {
             path="/posts"
             element={<GetAllPosts isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/posts/:postId" element={<SinglePost />} />
+          <Route
+            path="/posts/:postId"
+            element={<SinglePost isLoggedIn={isLoggedIn} />}
+          />
           <Route
             path="/newpost"
             element={<NewPost isLoggedIn={isLoggedIn} />}

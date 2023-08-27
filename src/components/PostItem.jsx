@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./PostItem.css";
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, isLoggedIn }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/posts/${post._id}`);
@@ -21,7 +21,7 @@ const PostItem = ({ post }) => {
         </p>
         <p className="post-description">
           <b>Description: </b>
-          <div style={{ paddingLeft: "1rem" }}>{post.description}</div>
+          {post.description}
         </p>
         <p>
           <b>Location: </b>
@@ -32,9 +32,13 @@ const PostItem = ({ post }) => {
         </p>
         <br />
         <div>
-          <button className="simple-buttons" onClick={handleClick}>
-            View
-          </button>
+          {post.isAuthor ? (
+            <button className="simple-buttons" onClick={handleClick}>
+              View
+            </button>
+          ) : (
+            isLoggedIn && <button className="">Message Seller ✎</button>
+          )}
         </div>
       </div>
     </>

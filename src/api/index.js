@@ -4,9 +4,10 @@ const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 // Fetch method to get all data
 export async function getAllPosts() {
   try {
-    const res = await fetch(`${API_URL}/posts`);
+    const res = await fetch(`${API_URL}/posts`, { headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}`, } });
     const result = await res.json();
     const posts = result.data.posts;
+    console.log(`${API_URL}/posts`);
     return posts;
   } catch (error) {
     console.error(`Unable to retrieve posts!`, error);
@@ -83,14 +84,20 @@ export async function registerUser(username, password) {
   }
 }
 
-// Fetch single post using this function
-export async function fetchSinglePost(postId) {
+// Delete a post using this function
+export async function deletePost(postId) {
   try {
-    const response = await fetch(`${API_URL}/posts/${postId}`);
-    console.log(`${API_URL}/posts/${postId}`);
+    const response = await fetch(`${API_URL}/posts/${postId}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+      }
+    });
     const result = await response.json();
+    console.log(result);
     return result;
   } catch (error) {
-    console.error("Error Get SinglePost: ", error);
+    console.error("Error DEL post: ", error);
   }
 }
