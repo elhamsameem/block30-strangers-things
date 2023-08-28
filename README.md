@@ -19,7 +19,7 @@ Make sure you have met all of the following requirements:
 
 #### Routes via React Router
 
-- [ ] `/posts`
+- [x] `/posts`
 - [ ] `/profile` (with messages)
 - [x] `/login` and `/register` (alternatively displayed in the profile)
 
@@ -27,29 +27,29 @@ Make sure you have met all of the following requirements:
 
 **Should be able to:**
 
-- [ ] See a list of all posts.
-- [ ] Sign up for an account with username and password.
-- [ ] Sign in with correct username/password combination.
+- [x] See a list of all posts.
+- [x] Sign up for an account with username and password.
+- [x] Sign in with correct username/password combination.
 
 **Should not be able to:**
 
-- [ ] Create a new post.
-- [ ] Delete any post.
+- [x] Create a new post.
+- [x] Delete any post.
 - [ ] Send a message to the author of any post.
 
 #### Authenticated Users
 
 **Should be able to:**
 
-- [ ] Create a new post.
-- [ ] Delete a post for which they are the author.
+- [x] Create a new post.
+- [x] Delete a post for which they are the author.
 - [ ] Send a message to the author of any post for which they are not the author.
 - [ ] See all messages for any post for which they are the author.
 - [ ] See all messages they've received in a special view.
 
 **Should not be able to:**
 
-- [ ] Delete posts for which they are not the author.
+- [x] Delete posts for which they are not the author.
 - [ ] Send a message to themselves.
 
 #### All Users
@@ -60,19 +60,19 @@ Make sure you have met all of the following requirements:
 
 #### Javascript Basics
 
-- [ ] Correct use of `let` and `const` for variable declaration.
-- [ ] Usage of loop structures: `map`, `forEach`, `for`, or `while` loops.
-- [ ] Control structures like `if`, `else`, `else if`, and ternaries.
-- [ ] Function declaration and invocation.
-- [ ] Usage of basic data types.
-- [ ] Usage of complex data types like arrays and objects.
+- [x] Correct use of `let` and `const` for variable declaration.
+- [x] Usage of loop structures: `map`, `forEach`, `for`, or `while` loops.
+- [x] Control structures like `if`, `else`, `else if`, and ternaries.
+- [x] Function declaration and invocation.
+- [x] Usage of basic data types.
+- [x] Usage of complex data types like arrays and objects.
 
 #### AJAX Basics
 
 - [x] Usage of HTTP methods: GET, POST, PATCH, DELETE.
-- [ ] Handling asynchronous coding for requests.
-- [ ] Usage of try/catch blocks within async functions.
-- [ ] Updating the DOM with results of data requests.
+- [x] Handling asynchronous coding for requests.
+- [x] Usage of try/catch blocks within async functions.
+- [x] Updating the DOM with results of data requests.
 
 #### Front-End Basics
 
