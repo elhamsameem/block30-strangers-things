@@ -1,18 +1,47 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./PostItem.css";
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, isLoggedIn }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/posts/${post._id}`);
+  };
+
   return (
-    <div className="post-item" key={post.id}>
-      <h2>{post.title}</h2>
-      <p className="post-description">
-        <b>Description: </b>
-        {post.description}
-      </p>
-      <p>
-        <b>Price: </b>${post.price}
-      </p>
-    </div>
+    <>
+      <div className="post-item" key={post.id}>
+        <div className="post-title">
+          <h2>{post.title}</h2>
+          <b className="seller-username">{post.author.username}</b>
+        </div>
+        <p>
+          <b>Price: </b>
+          {post.price}
+        </p>
+        <p className="post-description">
+          <b>Description: </b>
+          {post.description}
+        </p>
+        <p>
+          <b>Location: </b>
+          {post.location}
+        </p>
+        <p>
+          <b>Will Deliver: </b> {post.willDeliver ? "Yes" : "No"}
+        </p>
+        <br />
+        <div>
+          {post.isAuthor ? (
+            <button className="simple-buttons" onClick={handleClick}>
+              View
+            </button>
+          ) : (
+            isLoggedIn && <button className="">Message Seller ✎</button>
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 export default PostItem;

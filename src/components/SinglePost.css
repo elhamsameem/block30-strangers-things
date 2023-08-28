@@ -1,0 +1,16 @@
+.action-buttons {
+    margin: 1rem;
+    width: 5rem;
+}
+
+.delete-button {
+    background-color: white !important;
+    color: red !important;
+    border: 1pt solid #007bff !important;
+}
+
+.delete-button:hover {
+    background-color: rgb(173, 9, 9) !important;
+    color: white !important;
+    border: none !important;
+}

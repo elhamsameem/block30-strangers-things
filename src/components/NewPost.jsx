@@ -112,7 +112,13 @@ function NewPost({ isLoggedIn }) {
               <button type="submit">Create Post</button>
             </form>
           </div>
-          {postData && <PostItem post={postData} />}
+          {postData && (
+            <div className="post-container">
+              <div className="post">
+                <PostItem post={postData} />
+              </div>
+            </div>
+          )}
         </>
       ) : (
         <>

@@ -1,3 +1,84 @@
+.posts-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  /* border: 2pt black solid; */
+  margin-bottom: 2rem;
+}
+
+.post-item {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  padding: 1.5rem;
+  /* width: 50rem; */
+
+  border-radius: 10px;
+  /* background-color: rgba(162, 135, 121, 0.499); */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.758);
+
+  /* border: 2pt solid red; */
+}
+
+.post-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.x-button {
+  width: 3rem;
+  margin-bottom: 1rem;
+}
+
 .post-description {
   white-space: pre-line; /* Preserves line breaks and spaces */
+}
+
+.post-item p {
+  margin-top: 1rem;
+}
+
+.seller-username {
+  color: rgba(0, 0, 0, 0.455);
+}
+
+.new-post-button-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.new-post-button-div button,
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: white;
+  color: #007bff;
+  border: solid 1pt #007bff;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.new-post-button-div button:hover,
+button:hover {
+  background-color: #0056b3 !important;
+  color: white !important;
+}
+
+.simple-buttons {
+  background-color: white;
+  color: #007bff;
+  border: solid 1pt #007bff;
+  width: 5rem;
 }
