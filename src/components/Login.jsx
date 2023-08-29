@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { useHistory } from "react-router-dom";
 import { loginUser } from "../api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../Login.css";
 
-function Login() {
+function Login({ isLoggedIn }) {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // navigate back to home if already logged in
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,6 +69,9 @@ function Login() {
           Login
         </button>
       </form>
+      <p>
+        create an account <Link to="/register">Register here</Link>
+      </p>
     </div>
   );
 }
