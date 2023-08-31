@@ -4,14 +4,6 @@ import React from "react";
 function Navbar({ isLoggedIn, handleLogout }) {
   const navigate = useNavigate();
 
-  // lets create a const for function to handle logout
-  /*   const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    setIsLoggedIn(false);
-    setToken(null);
-    navigate("/");
-  }; */
-
   return (
     <div className="navbar">
       <h1 className="navTitle">Stranger's Things</h1>
