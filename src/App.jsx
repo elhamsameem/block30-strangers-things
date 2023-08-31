@@ -7,15 +7,21 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import NewPost from "./components/NewPost";
 import React, { useState, useEffect } from "react";
-import SinglePost from "./components/singlePost";
+import SinglePost from "./components/SinglePost";
 
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
+  // lets create a const for function to handle logout
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setToken(null);
+  };
 
   return (
     <div>
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <div className="canvas">
         <Routes>
           <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
