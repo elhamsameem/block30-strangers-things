@@ -4,14 +4,6 @@ import React from "react";
 function Navbar({ isLoggedIn, handleLogout }) {
   const navigate = useNavigate();
 
-  // lets create a const for function to handle logout
-  /*   const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    setIsLoggedIn(false);
-    setToken(null);
-    navigate("/");
-  }; */
-
   return (
     <div className="navbar">
       <h1 className="navTitle">Stranger's Things</h1>
@@ -22,14 +14,13 @@ function Navbar({ isLoggedIn, handleLogout }) {
           <>
             <NavLink to={"/newpost"}>New Post</NavLink>
             {/* <NavLink to={"/logout"}>Log Out</NavLink> */}
-            <NavLink to={"/"} onClick={handleLogout}>
+            <NavLink to={"/logout"} onClick={handleLogout}>
               Log out
             </NavLink>
           </>
         ) : (
           <>
             <NavLink to={"/login"}>Login</NavLink>
-            <NavLink to={"/register"}>Register</NavLink>
           </>
         )}
       </div>

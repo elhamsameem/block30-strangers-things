@@ -12,7 +12,11 @@ function Register() {
   const createUser = async (event) => {
     try {
       event.preventDefault();
-      await registerUser(newUsername, newUserPassword);
+      const result = await registerUser(newUsername, newUserPassword);
+      console.log(result.data.token);
+      sessionStorage.setItem("token", result.data.token);
+      navigate("/");
+      location.reload();
     } catch (error) {
       console.error(`There is an issue in creating a player!`, error);
     }
