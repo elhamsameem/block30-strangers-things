@@ -69,9 +69,10 @@ function Login({ isLoggedIn }) {
           Login
         </button>
       </form>
-      <p>
-        create an account <Link to="/register">Register here</Link>
-      </p>
+      <br />
+      <div>
+        Don't have an account? <Link to="/register">Register here</Link>
+      </div>
     </div>
   );
 }

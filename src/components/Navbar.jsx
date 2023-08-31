@@ -22,14 +22,13 @@ function Navbar({ isLoggedIn, handleLogout }) {
           <>
             <NavLink to={"/newpost"}>New Post</NavLink>
             {/* <NavLink to={"/logout"}>Log Out</NavLink> */}
-            <NavLink to={"/"} onClick={handleLogout}>
+            <NavLink to={"/logout"} onClick={handleLogout}>
               Log out
             </NavLink>
           </>
         ) : (
           <>
             <NavLink to={"/login"}>Login</NavLink>
-            <NavLink to={"/register"}>Register</NavLink>
           </>
         )}
       </div>

@@ -1,5 +1,5 @@
 import GetAllPosts from "./components/GetAllPosts";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Register from "./components/Register";
 import "./Style.css";
 import Navbar from "./components/Navbar";
@@ -12,11 +12,15 @@ import SinglePost from "./components/SinglePost";
 function App() {
   const [token, setToken] = useState(sessionStorage.getItem("token") || null);
   const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
-  // lets create a const for function to handle logout
+  const navigate = useNavigate();
+
+  //  function to handle logout
   const handleLogout = () => {
     sessionStorage.removeItem("token");
     setIsLoggedIn(false);
     setToken(null);
+    navigate("/login");
+    location.reload();
   };
 
   return (
