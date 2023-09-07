@@ -10,17 +10,25 @@ import React, { useState, useEffect } from "react";
 import SinglePost from "./components/SinglePost";
 
 function App() {
-  const [token, setToken] = useState(sessionStorage.getItem("token") || null);
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [token]);
+
   //  function to handle logout
   const handleLogout = () => {
-    sessionStorage.removeItem("token");
+    // sessionStorage.removeItem("token");
     setIsLoggedIn(false);
     setToken(null);
     navigate("/login");
-    location.reload();
+    // location.reload();
   };
 
   return (

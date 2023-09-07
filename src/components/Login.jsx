@@ -33,7 +33,7 @@ function Login({ isLoggedIn }) {
     try {
       const token = await loginUser(credentials.username, credentials.password);
       if (token) {
-        sessionStorage.setItem("token", token);
+        localStorage.setItem("token", token);
         navigate("/");
         location.reload();
       } else {

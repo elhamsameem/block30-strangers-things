@@ -14,7 +14,7 @@ function Navbar({ isLoggedIn, handleLogout }) {
           <>
             <NavLink to={"/newpost"}>New Post</NavLink>
             {/* <NavLink to={"/logout"}>Log Out</NavLink> */}
-            <NavLink to={"/logout"} onClick={handleLogout}>
+            <NavLink to={"/login"} onClick={handleLogout}>
               Log out
             </NavLink>
           </>
