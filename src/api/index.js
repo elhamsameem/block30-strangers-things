@@ -4,7 +4,7 @@ const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 // Fetch method to get all data
 export async function getAllPosts() {
   try {
-    const res = await fetch(`${API_URL}/posts`, { headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}`, } });
+    const res = await fetch(`${API_URL}/posts`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}`, } });
     const result = await res.json();
     const posts = result.data.posts;
     console.log(`${API_URL}/posts`);
@@ -50,7 +50,7 @@ export const createPost = async (post) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify({ post }),
     });
@@ -91,7 +91,7 @@ export async function deletePost(postId) {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem("token")}`
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
       }
     });
     const result = await response.json();
