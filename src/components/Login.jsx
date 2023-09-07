@@ -35,7 +35,6 @@ function Login({ isLoggedIn }) {
       if (token) {
         localStorage.setItem("token", token);
         navigate("/");
-        location.reload();
       } else {
         setError("Invalid Credentials, please try again");
       }
