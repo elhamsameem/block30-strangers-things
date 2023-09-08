@@ -8,12 +8,12 @@ Make sure you have met all of the following requirements:
 
 ### Project Management Requirements
 
-- [ ] GitHub Project board set up.
-- [ ] Detailed planning tickets with task descriptions for each one.
-- [ ] Demonstration that each team member made contributions to the planning of tickets.
-- [ ] Each student in the pair must have at least one commit towards the final result, in separate branches.
-- [ ] GitHub repository containing all relevant code for the project.
-- [ ] Updated GitHub repository with new commits.
+- [x] GitHub Project board set up.
+- [x] Detailed planning tickets with task descriptions for each one.
+- [x] Demonstration that each team member made contributions to the planning of tickets.
+- [x] Each student in the pair must have at least one commit towards the final result, in separate branches.
+- [x] GitHub repository containing all relevant code for the project.
+- [x] Updated GitHub repository with new commits.
 
 ### Functionality Requirements
 
@@ -44,7 +44,7 @@ Make sure you have met all of the following requirements:
 - [x] Create a new post.
 - [x] Delete a post for which they are the author.
 - [ ] Send a message to the author of any post for which they are not the author.
-- [ ] See all messages for any post for which they are the author.
+- [x] See all messages for any post for which they are the author.
 - [ ] See all messages they've received in a special view.
 
 **Should not be able to:**
@@ -54,7 +54,7 @@ Make sure you have met all of the following requirements:
 
 #### All Users
 
-- [ ] Filter posts with a simple text matcher (no fetch call needed here).
+- [x] Filter posts with a simple text matcher (no fetch call needed here).
 
 ### Implementation Requirements
 
