@@ -20,6 +20,7 @@ function App() {
     } else {
       localStorage.removeItem("token");
     }
+    setIsLoggedIn(token ? true : false);
   }, [token]);
 
   //  function to handle logout
@@ -53,7 +54,12 @@ function App() {
             path="/register"
             element={<Register isLoggedIn={isLoggedIn} />}
           />
-          <Route path="/login" element={<Login isLoggedIn={isLoggedIn} />} />
+          <Route
+            path="/login"
+            element={
+              <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+            }
+          />
         </Routes>
       </div>
     </div>
