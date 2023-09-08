@@ -1,9 +1,7 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import React from "react";
 
 function Navbar({ isLoggedIn, handleLogout }) {
-  const navigate = useNavigate();
-
   return (
     <div className="navbar">
       <h1 className="navTitle">Stranger's Things</h1>
@@ -13,7 +11,6 @@ function Navbar({ isLoggedIn, handleLogout }) {
         {isLoggedIn ? (
           <>
             <NavLink to={"/newpost"}>New Post</NavLink>
-            {/* <NavLink to={"/logout"}>Log Out</NavLink> */}
             <NavLink to={"/login"} onClick={handleLogout}>
               Log out
             </NavLink>

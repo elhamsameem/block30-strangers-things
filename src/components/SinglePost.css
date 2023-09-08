@@ -1,16 +1,36 @@
 .action-buttons {
-    margin: 1rem;
-    width: 5rem;
+  margin: 1rem;
+  width: 5rem;
 }
 
 .delete-button {
-    background-color: white !important;
-    color: red !important;
-    border: 1pt solid #007bff !important;
+  background-color: white !important;
+  color: red !important;
+  border: 1pt solid #007bff !important;
 }
 
 .delete-button:hover {
-    background-color: rgb(173, 9, 9) !important;
-    color: white !important;
-    border: none !important;
+  background-color: rgb(173, 9, 9) !important;
+  color: white !important;
+  border: none !important;
+}
+
+.messages-container {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.message-div {
+  margin-top: 1rem !important;
+  width: 40rem;
+  border-radius: 20px;
+  padding: 2rem;
+}
+
+.message-div h4 {
+  color: rgba(128, 128, 128, 0.597);
+}
+
+.messages-h2 {
+  margin-top: 4rem;
 }

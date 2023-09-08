@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { getAllPosts } from "../api";
 import PostItem from "./PostItem.jsx";
 import NewPost from "./NewPost.jsx";
 
-const GetAllPosts = ({ isLoggedIn }) => {
-  const [posts, setPosts] = useState([]);
+const GetAllPosts = ({ posts, setPosts, isLoggedIn }) => {
   const [showNewPost, setShowNewPost] = useState(false); // State to control NewPost visibility
   const [searchedPost, setSearchedPost] = useState("");
 
+  // Hangles the X button click
   const handleClick = () => {
     setShowNewPost(!showNewPost); // Toggle the showNewPost state
   };
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await getAllPosts();
-      setPosts(response);
-    };
-    fetchPosts();
-  }, []);
 
   // Filter posts based on the search input
   const filteredPosts = posts
     ? posts.filter(
         (post) =>
           post.description.toLowerCase().includes(searchedPost.toLowerCase()) ||
+          post.author.username
+            .toLowerCase()
+            .includes(searchedPost.toLowerCase()) ||
+          post.location.toLowerCase().includes(searchedPost.toLowerCase()) ||
           post.title.toLowerCase().includes(searchedPost.toLowerCase())
       )
     : [];
@@ -32,17 +27,21 @@ const GetAllPosts = ({ isLoggedIn }) => {
   return (
     <div className="posts-container">
       <div className="post">
-        <div className="search-bar-div">
-          <input
-            type="text"
-            className="search-bar"
-            value={searchedPost}
-            placeholder="Search for Text"
-            onChange={(event) => {
-              setSearchedPost(event.target.value);
-            }}
-          />
-        </div>
+        {posts && (
+          <>
+            <div className="search-bar-div">
+              <input
+                type="text"
+                className="search-bar"
+                value={searchedPost}
+                placeholder="Search for Text"
+                onChange={(event) => {
+                  setSearchedPost(event.target.value);
+                }}
+              />
+            </div>
+          </>
+        )}
         {
           <div className="new-post-button-div">
             {isLoggedIn &&
@@ -51,7 +50,11 @@ const GetAllPosts = ({ isLoggedIn }) => {
                   <button className="x-button" onClick={handleClick}>
                     X
                   </button>
-                  <NewPost isLoggedIn={isLoggedIn} />
+                  <NewPost
+                    isLoggedIn={isLoggedIn}
+                    posts={posts}
+                    setPosts={setPosts}
+                  />
                 </>
               ) : (
                 <button className="new-post-button" onClick={handleClick}>

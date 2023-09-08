@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 // import { useHistory } from "react-router-dom";
 import { loginUser } from "../api";
 import { Link, useNavigate } from "react-router-dom";
-
 import "../Login.css";
 
-function Login({ isLoggedIn }) {
+function Login({ isLoggedIn, setIsLoggedIn }) {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -18,7 +17,7 @@ function Login({ isLoggedIn }) {
     if (isLoggedIn) {
       navigate("/");
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +33,7 @@ function Login({ isLoggedIn }) {
       const token = await loginUser(credentials.username, credentials.password);
       if (token) {
         localStorage.setItem("token", token);
-        navigate("/");
+        setIsLoggedIn(true);
       } else {
         setError("Invalid Credentials, please try again");
       }
