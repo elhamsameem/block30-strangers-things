@@ -8,12 +8,24 @@ import Home from "./components/Home";
 import NewPost from "./components/NewPost";
 import React, { useState, useEffect } from "react";
 import SinglePost from "./components/SinglePost";
+import { getAllPosts } from "./api";
 
 function App() {
+  const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [isLoggedIn, setIsLoggedIn] = useState(token ? true : false);
   const navigate = useNavigate();
 
+  // Fetch all posts
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const response = await getAllPosts();
+      setPosts(response);
+    };
+    fetchPosts();
+  }, []);
+
+  // Remove token from local storage based on token value
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
@@ -37,10 +49,13 @@ function App() {
       <Navbar isLoggedIn={isLoggedIn} handleLogout={handleLogout} />
       <div className="canvas">
         <Routes>
-          <Route path="/" element={<Home isLoggedIn={isLoggedIn} />} />
+          <Route
+            path="/"
+            element={<Home isLoggedIn={isLoggedIn} posts={posts} />}
+          />
           <Route
             path="/posts"
-            element={<GetAllPosts isLoggedIn={isLoggedIn} />}
+            element={<GetAllPosts isLoggedIn={isLoggedIn} posts={posts} />}
           />
           <Route
             path="/posts/:postId"
