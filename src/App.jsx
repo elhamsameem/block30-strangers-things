@@ -23,7 +23,7 @@ function App() {
       setPosts(response);
     };
     fetchPosts();
-  }, []);
+  }, [isLoggedIn]);
 
   // Remove token from local storage based on token value
   useEffect(() => {
@@ -37,7 +37,7 @@ function App() {
 
   //  function to handle logout
   const handleLogout = () => {
-    // sessionStorage.removeItem("token");
+    localStorage.removeItem("token");
     setIsLoggedIn(false);
     setToken(null);
     navigate("/login");

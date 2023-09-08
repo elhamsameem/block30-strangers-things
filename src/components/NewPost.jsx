@@ -116,7 +116,7 @@ function NewPost({ isLoggedIn, posts, setPosts }) {
           {postData && (
             <div className="post-container">
               <div className="post">
-                <PostItem post={postData} />
+                <PostItem post={postData} isLoggedIn={isLoggedIn} />
               </div>
             </div>
           )}

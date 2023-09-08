@@ -32,13 +32,14 @@ const PostItem = ({ post, isLoggedIn }) => {
         </p>
         <br />
         <div>
-          {post.isAuthor ? (
-            <button className="simple-buttons" onClick={handleClick}>
-              View
-            </button>
-          ) : (
-            isLoggedIn && <button className="">Message Seller ✎</button>
-          )}
+          {isLoggedIn &&
+            (post.isAuthor ? (
+              <button className="simple-buttons" onClick={handleClick}>
+                View
+              </button>
+            ) : (
+              <button className="">Message Seller ✎</button>
+            ))}
         </div>
       </div>
     </>
