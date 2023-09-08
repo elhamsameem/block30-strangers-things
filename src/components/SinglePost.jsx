@@ -5,7 +5,7 @@ import "./SinglePost.css";
 import { getAllPosts, deletePost } from "../api";
 import PostItem from "./PostItem";
 
-function SinglePost({ isLoggedIn }) {
+function SinglePost({ isLoggedIn, posts, setPosts }) {
   const [post, setPost] = useState(null);
   const params = useParams();
   const navigate = useNavigate();
@@ -14,16 +14,15 @@ function SinglePost({ isLoggedIn }) {
   !isLoggedIn && navigate("/login");
 
   useEffect(() => {
-    const getPosts = async () => {
-      const posts = await getAllPosts();
-      const findPost = posts.filter((post) => post._id === params.postId);
-      setPost(findPost[0]);
-    };
-    getPosts();
+    const findPost = posts.filter((post) => post._id === params.postId);
+    setPost(findPost[0]);
   }, []);
 
   async function handleDeleteClick() {
     const response = await deletePost(post._id);
+    if (response.success) {
+      setPosts(posts.filter((e) => e._id !== post._id));
+    }
     navigate("/posts");
   }
 
@@ -36,39 +35,59 @@ function SinglePost({ isLoggedIn }) {
           </button>
           {isLoggedIn &&
             (post ? (
-              <div className="post-item" key={post.id}>
-                <div className="post-title">
-                  <h2>{post.title}</h2>
-                  <b className="seller-username">{post.author.username}</b>
+              <>
+                <div className="post-item" key={post.id}>
+                  <div className="post-title">
+                    <h2>{post.title}</h2>
+                    <b className="seller-username">{post.author.username}</b>
+                  </div>
+                  <p>
+                    <b>Price: </b>
+                    {post.price}
+                  </p>
+                  <p className="post-description">
+                    <b>Description: </b>
+                    {post.description}
+                  </p>
+                  <p>
+                    <b>Location: </b>
+                    {post.location}
+                  </p>
+                  <p>
+                    <b>Will Deliver: </b> {post.willDeliver ? "Yes" : "No"}
+                  </p>
+                  <br />
+                  {post.isAuthor && (
+                    <div className="action-buttons-div">
+                      <button
+                        className="action-buttons, delete-button"
+                        onClick={handleDeleteClick}
+                      >
+                        Delete
+                      </button>
+                      <button className="action-buttons">Edit</button>
+                    </div>
+                  )}
                 </div>
-                <p>
-                  <b>Price: </b>
-                  {post.price}
-                </p>
-                <p className="post-description">
-                  <b>Description: </b>
-                  {post.description}
-                </p>
-                <p>
-                  <b>Location: </b>
-                  {post.location}
-                </p>
-                <p>
-                  <b>Will Deliver: </b> {post.willDeliver ? "Yes" : "No"}
-                </p>
-                <br />
-                {post.isAuthor && (
-                  <div className="action-buttons-div">
-                    <button
-                      className="action-buttons, delete-button"
-                      onClick={handleDeleteClick}
-                    >
-                      Delete
-                    </button>
-                    <button className="action-buttons">Edit</button>
+                {post.messages.length > 0 && (
+                  <div className="messages-container">
+                    <div className="messages-div">
+                      <h2 className="messages-h2">Messages</h2>
+                      {post.messages.map((message) => {
+                        return (
+                          <div
+                            key={message._id}
+                            className="post-item message-div"
+                          >
+                            <h4>From: {message.fromUser.username}</h4>
+                            <p>{message.content}</p>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                 )}
-              </div>
+              </>
             ) : (
               <h1>Post Not Found!</h1>
             ))}

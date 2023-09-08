@@ -7,7 +7,6 @@ export async function getAllPosts() {
     const res = await fetch(`${API_URL}/posts`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}`, } });
     const result = await res.json();
     const posts = result.data.posts;
-    console.log(`${API_URL}/posts`);
     return posts;
   } catch (error) {
     console.error(`Unable to retrieve posts!`, error);
@@ -95,7 +94,6 @@ export async function deletePost(postId) {
       }
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
     console.error("Error DEL post: ", error);

@@ -4,7 +4,7 @@ import "./NewPost.css";
 import { createPost } from "../api";
 import PostItem from "./PostItem";
 
-function NewPost({ isLoggedIn }) {
+function NewPost({ isLoggedIn, posts, setPosts }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -26,7 +26,8 @@ function NewPost({ isLoggedIn }) {
     setPostResult(response.success);
     setErr(response.error);
     setPostData(response.data.post);
-    console.log("response", response);
+
+    setPosts([...posts, response.data.post]);
   }
 
   useEffect(() => {

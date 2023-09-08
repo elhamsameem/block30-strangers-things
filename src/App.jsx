@@ -51,19 +51,39 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Home isLoggedIn={isLoggedIn} posts={posts} />}
+            element={
+              <Home isLoggedIn={isLoggedIn} posts={posts} setPosts={setPosts} />
+            }
           />
           <Route
             path="/posts"
-            element={<GetAllPosts isLoggedIn={isLoggedIn} posts={posts} />}
+            element={
+              <GetAllPosts
+                isLoggedIn={isLoggedIn}
+                posts={posts}
+                setPosts={setPosts}
+              />
+            }
           />
           <Route
             path="/posts/:postId"
-            element={<SinglePost isLoggedIn={isLoggedIn} />}
+            element={
+              <SinglePost
+                isLoggedIn={isLoggedIn}
+                posts={posts}
+                setPosts={setPosts}
+              />
+            }
           />
           <Route
             path="/newpost"
-            element={<NewPost isLoggedIn={isLoggedIn} />}
+            element={
+              <NewPost
+                isLoggedIn={isLoggedIn}
+                posts={posts}
+                setPosts={setPosts}
+              />
+            }
           />
           <Route
             path="/register"

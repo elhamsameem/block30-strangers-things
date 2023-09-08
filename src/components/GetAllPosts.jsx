@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PostItem from "./PostItem.jsx";
 import NewPost from "./NewPost.jsx";
 
-const GetAllPosts = ({ posts, isLoggedIn }) => {
+const GetAllPosts = ({ posts, setPosts, isLoggedIn }) => {
   const [showNewPost, setShowNewPost] = useState(false); // State to control NewPost visibility
   const [searchedPost, setSearchedPost] = useState("");
 
@@ -50,7 +50,11 @@ const GetAllPosts = ({ posts, isLoggedIn }) => {
                   <button className="x-button" onClick={handleClick}>
                     X
                   </button>
-                  <NewPost isLoggedIn={isLoggedIn} />
+                  <NewPost
+                    isLoggedIn={isLoggedIn}
+                    posts={posts}
+                    setPosts={setPosts}
+                  />
                 </>
               ) : (
                 <button className="new-post-button" onClick={handleClick}>
