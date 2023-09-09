@@ -9,6 +9,7 @@ import NewPost from "./components/NewPost";
 import React, { useState, useEffect } from "react";
 import SinglePost from "./components/SinglePost";
 import { getAllPosts } from "./api";
+import MessagePage from "./components/MessagePage";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -23,7 +24,7 @@ function App() {
       setPosts(response);
     };
     fetchPosts();
-  }, [isLoggedIn]);
+  }, []);
 
   // Remove token from local storage based on token value
   useEffect(() => {
@@ -94,6 +95,11 @@ function App() {
             element={
               <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
             }
+          />
+
+          <Route
+            path="/messages/:postId"
+            element={<MessagePage isLoggedIn={isLoggedIn} />}
           />
         </Routes>
       </div>

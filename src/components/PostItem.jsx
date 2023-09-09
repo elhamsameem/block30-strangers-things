@@ -4,8 +4,12 @@ import "./PostItem.css";
 
 const PostItem = ({ post, isLoggedIn }) => {
   const navigate = useNavigate();
-  const handleClick = () => {
+  const handleViewClick = () => {
     navigate(`/posts/${post._id}`);
+  };
+
+  const handleMessageClick = () => {
+    navigate(`/messages/${post._id}`);
   };
 
   return (
@@ -34,11 +38,13 @@ const PostItem = ({ post, isLoggedIn }) => {
         <div>
           {isLoggedIn &&
             (post.isAuthor ? (
-              <button className="simple-buttons" onClick={handleClick}>
+              <button className="simple-buttons" onClick={handleViewClick}>
                 View
               </button>
             ) : (
-              <button className="">Message Seller ✎</button>
+              <button className="" onClick={handleMessageClick}>
+                Message Seller ✎
+              </button>
             ))}
         </div>
       </div>

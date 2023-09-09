@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./SinglePost.css";
-import { getAllPosts, deletePost } from "../api";
+import { getAllPosts, deletePost, updatePost } from "../api";
 import PostItem from "./PostItem";
 
 function SinglePost({ isLoggedIn, posts, setPosts }) {

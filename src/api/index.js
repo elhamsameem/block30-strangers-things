@@ -4,7 +4,9 @@ const API_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
 // Fetch method to get all data
 export async function getAllPosts() {
   try {
-    const res = await fetch(`${API_URL}/posts`, { headers: { Authorization: `Bearer ${localStorage.getItem("token")}`, } });
+    const res = await fetch(`${API_URL}/posts`, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
     const result = await res.json();
     const posts = result.data.posts;
     return posts;
@@ -89,13 +91,54 @@ export async function deletePost(postId) {
     const response = await fetch(`${API_URL}/posts/${postId}`, {
       method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem("token")}`
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     });
     const result = await response.json();
     return result;
   } catch (error) {
     console.error("Error DEL post: ", error);
+  }
+}
+
+// Update a post using this function
+export async function updatePost(postId, updatedData) {
+  try {
+    const response = await fetch(`${API_URL}/posts/${postId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ post: updatedData }),
+    });
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error updating post: ", error);
+  }
+}
+
+// send a message to a post
+export async function sendMessage(postId, message) {
+  try {
+    const response = await fetch(`${API_URL}/posts/${postId}/messages`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ message }),
+    });
+    const result = await response.json();
+    if (response.ok) {
+      return { success: true, result: result.data.message };
+    } else {
+      return { success: false, result: result.error.message };
+    }
+  } catch (error) {
+    console.error("Error sending message: ", error);
+    return { success: false, result: error };
   }
 }
