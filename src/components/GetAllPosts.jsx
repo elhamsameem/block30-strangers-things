@@ -15,12 +15,22 @@ const GetAllPosts = ({ posts, setPosts, isLoggedIn }) => {
   const filteredPosts = posts
     ? posts.filter(
         (post) =>
-          post.description.toLowerCase().includes(searchedPost.toLowerCase()) ||
-          post.author.username
-            .toLowerCase()
-            .includes(searchedPost.toLowerCase()) ||
-          post.location.toLowerCase().includes(searchedPost.toLowerCase()) ||
-          post.title.toLowerCase().includes(searchedPost.toLowerCase())
+          (post.description
+            ? post.description
+                .toLowerCase()
+                .includes(searchedPost.toLowerCase())
+            : false) ||
+          (post.author && post.author.username
+            ? post.author.username
+                .toLowerCase()
+                .includes(searchedPost.toLowerCase())
+            : false) ||
+          (post.location
+            ? post.location.toLowerCase().includes(searchedPost.toLowerCase())
+            : false) ||
+          (post.title
+            ? post.title.toLowerCase().includes(searchedPost.toLowerCase())
+            : false)
       )
     : [];
 

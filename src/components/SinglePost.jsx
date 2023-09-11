@@ -2,11 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./SinglePost.css";
+import "./NewPost.css";
 import { getAllPosts, deletePost, updatePost } from "../api";
 import PostItem from "./PostItem";
 
 function SinglePost({ isLoggedIn, posts, setPosts }) {
   const [post, setPost] = useState(null);
+  const [editing, setEditing] = useState(false);
+  const [updatedData, setUpdatedData] = useState({});
   const params = useParams();
   const navigate = useNavigate();
 
@@ -14,86 +17,124 @@ function SinglePost({ isLoggedIn, posts, setPosts }) {
   !isLoggedIn && navigate("/login");
 
   useEffect(() => {
-    const findPost = posts.filter((post) => post._id === params.postId);
-    setPost(findPost[0]);
-  }, []);
+    /*     const findPost = posts.filter((post) => post._id === params.postId);
+    setPost(findPost[0]); */
+    if (Array.isArray(posts)) {
+      const findPost = posts.filter(
+        (post) => post && post._id === params.postId
+      );
+      setPost(findPost[0]);
+    }
+  }, [posts, params.postId]);
+
+  const handleChange = (event) => {
+    setUpdatedData({ ...updatedData, [event.target.name]: event.target.value });
+  };
 
   async function handleDeleteClick() {
     const response = await deletePost(post._id);
     if (response.success) {
       setPosts(posts.filter((e) => e._id !== post._id));
+
+      navigate("/posts");
     }
-    navigate("/posts");
   }
 
+  const handleEditClick = () => {
+    setEditing(true);
+    setUpdatedData(post);
+  };
+
+  const handleSaveClick = async () => {
+    const updatedPost = await updatePost(post._id, updatedData);
+    if (updatedPost.success) {
+      const updatedPosts = posts.map((p) => {
+        return p._id === post._id ? updatedPost.data.post : p;
+      });
+      setPosts(updatedPosts);
+      setPost(updatedPost.data.post);
+      setEditing(false);
+
+      navigate(`/posts/${post._id}`);
+    } else {
+      console.error("Failed to update post:", updatedPost.error);
+    }
+  };
+
   return (
-    <>
-      <div className="posts-container">
-        <div className="post">
-          <button className="simple-buttons" onClick={() => history.back()}>
-            Back
-          </button>
-          {isLoggedIn &&
-            (post ? (
+    <div className="posts-container">
+      <div className="post">
+        <button className="simple-buttons" onClick={() => navigate(-1)}>
+          Back
+        </button>
+        {isLoggedIn && post ? (
+          <>
+            {editing ? (
+              <div className="new-post-form-container">
+                <form>
+                  <label htmlFor="title">Title</label>
+                  <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    value={updatedData.title}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="description">Description</label>
+                  <textarea
+                    name="description"
+                    id="description"
+                    value={updatedData.description}
+                    onChange={handleChange}
+                  ></textarea>
+                  <label htmlFor="price">Price</label>
+                  <input
+                    type="text"
+                    name="price"
+                    id="price"
+                    value={updatedData.price}
+                    onChange={handleChange}
+                  />
+                  <label htmlFor="location">Location</label>
+                  <input
+                    type="text"
+                    name="location"
+                    id="location"
+                    value={updatedData.location}
+                    onChange={handleChange}
+                  />
+                  <button type="button" onClick={handleSaveClick}>
+                    Save
+                  </button>
+                </form>
+              </div>
+            ) : (
               <>
-                <div className="post-item" key={post.id}>
-                  <div className="post-title">
-                    <h2>{post.title}</h2>
-                    <b className="seller-username">{post.author.username}</b>
-                  </div>
-                  <p>
-                    <b>Price: </b>
-                    {post.price}
-                  </p>
-                  <p className="post-description">
-                    <b>Description: </b>
-                    {post.description}
-                  </p>
-                  <p>
-                    <b>Location: </b>
-                    {post.location}
-                  </p>
-                  <p>
-                    <b>Will Deliver: </b> {post.willDeliver ? "Yes" : "No"}
-                  </p>
-                  <br />
-                  {post.isAuthor && (
-                    <div className="action-buttons-div">
-                      <button
-                        className="action-buttons, delete-button"
-                        onClick={handleDeleteClick}
-                      >
-                        Delete
-                      </button>
-                      <button className="action-buttons">Edit</button>
-                    </div>
-                  )}
-                </div>
-                {post.messages.length > 0 && (
-                  <div className="messages-container">
-                    <div className="messages-div">
-                      <h2 className="messages-h2">Messages</h2>
-                      {post.messages.map((message) => {
-                        return (
-                          <div
-                            key={message._id}
-                            className="post-item message-div"
-                          >
-                            <h4>From: {message.fromUser.username}</h4>
-                            <p>{message.content}</p>
-                          </div>
-                        );
-                      })}
-                    </div>
+                <PostItem post={post} isLoggedIn={isLoggedIn} />
+                {post.isAuthor && (
+                  <div className="action-buttons-div">
+                    <button
+                      className="action-buttons delete-button"
+                      onClick={handleDeleteClick}
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="action-buttons"
+                      onClick={handleEditClick}
+                    >
+                      Edit
+                    </button>
                   </div>
                 )}
               </>
-            ) : (
-              <h1>Post Not Found!</h1>
-            ))}
-        </div>
+            )}
+          </>
+        ) : (
+          <h1>Post Not Found!</h1>
+        )}
       </div>
-    </>
+    </div>
   );
 }
 

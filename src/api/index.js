@@ -114,6 +114,7 @@ export async function updatePost(postId, updatedData) {
       body: JSON.stringify({ post: updatedData }),
     });
     const result = await response.json();
+    // console.log("update response", result);
     return result;
   } catch (error) {
     console.error("Error updating post: ", error);
