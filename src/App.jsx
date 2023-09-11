@@ -24,7 +24,7 @@ function App() {
       setPosts(response);
     };
     fetchPosts();
-  }, []);
+  }, [isLoggedIn]);
 
   // Remove token from local storage based on token value
   useEffect(() => {
