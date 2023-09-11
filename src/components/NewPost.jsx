@@ -27,7 +27,9 @@ function NewPost({ isLoggedIn, posts, setPosts }) {
     setErr(response.error);
     setPostData(response.data.post);
 
-    setPosts([...posts, response.data.post]);
+    /*     setPosts([...posts, response.data.post]);
+     */
+    setPosts((prevPosts) => [...prevPosts, response.data.post]);
   }
 
   useEffect(() => {
